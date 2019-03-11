@@ -59,6 +59,15 @@ router.post("/signup", (req, res, next) => {
 router.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
-});
+})
+
+router.get("/auth/update/:id", (req, res) => {
+    User.findById({ _id: req.params.id })
+        .then(users => res.render("update", { users }))
+        .catch(err => console.log(err))
+
+})
+router.get("/show", (req, res) => res.render("auth/show"))
+router.get("/update", (req, res) => res.render("auth/update"))
 
 module.exports = router;
