@@ -2,9 +2,10 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
 
-const placeSchema = new Schema({
-  name: String,
-  description: String,
+const hospitalSchema = new Schema({
+    name: String,
+    //description: String,
+    time: String,  
     location: { type: { type: String }, coordinates: [Number] }
   
 
@@ -12,7 +13,7 @@ const placeSchema = new Schema({
   timestamps: true
 });
 
-placeSchema.index({ location: '2dsphere' });
+hospitalSchema.index({ location: '2dsphere' });
 
-const Place = mongoose.model("Place", placeSchema)
-module.exports = Place;
+const Hospital = mongoose.model("Hospital", hospitalSchema)
+module.exports = Hospital;
