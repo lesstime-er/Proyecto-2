@@ -2,17 +2,18 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
 
-const placeSchema = new Schema({
+const hospitalSchema = new Schema({
     name: String,
-    description: String,
-    location: { latitude: Number, longitude: Number }
+    //description: String,
+    time: String,
+    location: { type: { type: String }, coordinates: [Number] }
 
 
 }, {
     timestamps: true
 });
 
-placeSchema.index({ location: '2dsphere' });
+hospitalSchema.index({ location: '2dsphere' });
 
-const Place = mongoose.model("Place", placeSchema)
-module.exports = Place;
+const Hospital = mongoose.model("Hospital", hospitalSchema)
+module.exports = Hospital;
