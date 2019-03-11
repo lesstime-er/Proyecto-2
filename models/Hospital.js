@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 
 const placeSchema = new Schema({
-  name: String,
-  description: String,
-    location: { type: { type: String }, coordinates: [Number] }
-  
+    name: String,
+    description: String,
+    location: { latitude: Number, longitude: Number }
+
 
 }, {
-  timestamps: true
+    timestamps: true
 });
 
 placeSchema.index({ location: '2dsphere' });
