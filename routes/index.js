@@ -1,13 +1,33 @@
+
 const express = require('express');
-const router = express.Router();
-const axios = require("axios")
+const router  = express.Router();
+const Hospital = require('../models/Hospital')
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
 
-
-    res.render('index');
-
+  Hospital.find()
+  .then(hospitals => {
+    res.render('index', {result: JSON.stringify(hospitals)});
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  
 });
 
-module.exports = router
+router.post('/hospitals', (req, res) => {
+
+  const {name, time,latitude,longitude} = req.body
+
+  let location = {
+    type: "Point",
+    location: [longitude, latitude]
+  }
+
+ 
+
+
+})
+
+module.exports = router;

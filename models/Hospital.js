@@ -6,7 +6,7 @@ const hospitalSchema = new Schema({
     name: String,
     //description: String,
     time: String,
-    location: { type: { type: String }, coordinates: [Number] }
+    location: {latitude:Number, longitude: Number }
 
 
 }, {

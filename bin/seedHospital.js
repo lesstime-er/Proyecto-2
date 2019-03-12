@@ -2,10 +2,14 @@ const mongoose = require("mongoose")
 const Hospital = require("../models/Hospital");
 const axios = require("axios")
 
+
+
 mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
     .then(x => {
+        
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
         return Hospital.deleteMany();
+        
     })
     .then(() => {
         return axios.get("https://datos.madrid.es/egob/catalogo/212769-0-atencion-medica.json")
@@ -17,7 +21,6 @@ mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
 
                         return arrHosp;
                     }
-
                 })
                 hospitals = hospitals.filter(hospital => {
                     if (hospital) {
@@ -25,12 +28,24 @@ mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
                     }
                     return false
                 })
+
+                var query = {time:"180"}
+                Hospital.update(query,{$set:{time:'180'}})
+                
                 return Hospital.insertMany(hospitals).then(console.log)
-            })
+                
+            })          
+    
+
     })
     .catch(err => console.log(err))
     .then(hosp => mongoose.connection.close())
     .catch(err => {
         console.error('Error connecting to mongo', err)
 
+        
+
     });
+
+
+ 
