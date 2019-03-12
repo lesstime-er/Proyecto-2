@@ -81,5 +81,7 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
+const hospRoutes = require('./routes/updateHosp');
+app.use('/updateHosp', hospRoutes);
 
 module.exports = app;
