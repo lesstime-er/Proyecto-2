@@ -61,13 +61,25 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
 })
 
-router.get("/auth/update/:id", (req, res) => {
-    User.findById({ _id: req.params.id })
-        .then(users => res.render("update", { users }))
-        .catch(err => console.log(err))
+router.get("/update", (req, res) => {
+    console.log(req.user, "<--------------")
+    res.render("auth/update", { user: req.user })
 
 })
+
+router.post("/update/:id", (req, res) => {
+    const { username, password } = req.body
+    console.log(req.params.id)
+    User.findByIdAndUpdate(req.params.id, { $set: { username, password } }, { new: true })
+        .then(users => {
+            console.log("Hola caracola")
+            res.render("auth/update")
+        })
+        .catch(err => console.log(err))
+})
+
+
 router.get("/show", (req, res) => res.render("auth/show"))
-router.get("/update", (req, res) => res.render("auth/update"))
+    // router.get("/update", (req, res) => res.render("auth/update"))
 
 module.exports = router;
