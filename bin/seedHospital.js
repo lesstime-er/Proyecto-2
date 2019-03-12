@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
                 let hospitals = response.data["@graph"].map((el) => {
 
                     if (el.title.startsWith('H')) {
-                        let arrHosp = { name: el.title, location: el.location, time:"180 min" }
+                        let arrHosp = { name: el.title, location: el.location, time: Math.floor (Math.random() * (360 - 10) + 10) + " min " }
 
                         return arrHosp;
                     }

@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-
+const Hospital= require("../models/Hospital");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -13,11 +13,13 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/auth/acces",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
 }));
+
+
 
 router.get("/signup", (req, res, next) => {
     res.render("auth/signup");
@@ -47,7 +49,7 @@ router.post("/signup", (req, res, next) => {
         console.log(newUser)
         newUser.save()
             .then(() => {
-                res.redirect("/");
+                res.redirect("/auth/acces");
             })
             .catch(err => {
                 console.log(err)
@@ -80,6 +82,21 @@ router.post("/update/:id", (req, res) => {
 
 
 router.get("/show", (req, res) => res.render("auth/show"))
+<<<<<<< HEAD
     // router.get("/update", (req, res) => res.render("auth/update"))
+=======
+router.get("/update", (req, res) => res.render("auth/update"))
+router.get("/acces", (req, res) => 
+{
+    Hospital.find()
+  .then(hospitals => {
+    res.render('auth/acces', {result: JSON.stringify(hospitals)});
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+)
+>>>>>>> cb2470e66adc14c7e01363b4493527b2eae67b99
 
 module.exports = router;
