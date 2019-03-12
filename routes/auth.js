@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-const Hospital= require("../models/Hospital");
+const Hospital = require("../models/Hospital");
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -71,32 +71,34 @@ router.get("/update", (req, res) => {
 
 router.post("/update/:id", (req, res) => {
     const { username, password } = req.body
-    console.log(req.params.id)
+    console.log(req.body)
+    console.log(username)
     User.findByIdAndUpdate(req.params.id, { $set: { username, password } }, { new: true })
         .then(users => {
-            console.log("Hola caracola")
+            console.log(req.body)
             res.render("auth/update")
         })
         .catch(err => console.log(err))
 })
+router.post("/delete", (req, res) => {
+    console.log("he pasado por el post del delete")
+    User.findOneAndRemove({ username: req.body.username })
+        .then(() => res.redirect("/auth/acces"))
+})
+
 
 
 router.get("/show", (req, res) => res.render("auth/show"))
-<<<<<<< HEAD
-    // router.get("/update", (req, res) => res.render("auth/update"))
-=======
 router.get("/update", (req, res) => res.render("auth/update"))
-router.get("/acces", (req, res) => 
-{
+router.get("/delete", (req, res) => res.render("auth/delete"))
+router.get("/acces", (req, res) => {
     Hospital.find()
-  .then(hospitals => {
-    res.render('auth/acces', {result: JSON.stringify(hospitals)});
-  })
-  .catch(err => {
-    console.log(err)
-  })
-}
-)
->>>>>>> cb2470e66adc14c7e01363b4493527b2eae67b99
+        .then(hospitals => {
+            res.render('auth/acces', { result: JSON.stringify(hospitals) });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 module.exports = router;
