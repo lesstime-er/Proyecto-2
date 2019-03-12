@@ -5,7 +5,11 @@
    User: <strong>{{username}}</strong>
  <form action="/auth/delete" method="post">
    <input type="text" name="username">
+   <input type="password" name="password" placeholder="********">
    <input type="submit" value="Delete">
+      {{#if message}}
+       <div class="error-message">{{ message }}</div>
+   {{/if}}
    </form>
   
  
