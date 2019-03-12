@@ -18,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const myMarker = new google.maps.Marker({
             position: ironhackMad,
             map: map,
-            title: 'Aqui estoy'
+            title: 'Aqui estoy',
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+
+          
         })
+     
         if (navigator.geolocation) {
 
             navigator.geolocation.getCurrentPosition((position) => {
@@ -64,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: center,
                 map: map,
                 title: `${hospital.name} \n Time: ${hospital.time}`,
+                
                   
             })
             markers.push(marker)

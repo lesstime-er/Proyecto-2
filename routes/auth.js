@@ -3,6 +3,8 @@ const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
 const Hospital= require("../models/Hospital");
+
+
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -82,9 +84,6 @@ router.post("/update/:id", (req, res) => {
 
 
 router.get("/show", (req, res) => res.render("auth/show"))
-<<<<<<< HEAD
-    // router.get("/update", (req, res) => res.render("auth/update"))
-=======
 router.get("/update", (req, res) => res.render("auth/update"))
 router.get("/acces", (req, res) => 
 {
@@ -97,6 +96,5 @@ router.get("/acces", (req, res) =>
   })
 }
 )
->>>>>>> cb2470e66adc14c7e01363b4493527b2eae67b99
 
 module.exports = router;
