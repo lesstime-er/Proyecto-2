@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
                 let hospitals = response.data["@graph"].map((el) => {
 
                     if (el.title.startsWith('H')) {
-                        let arrHosp = { name: el.title, location: el.location }
+                        let arrHosp = { name: el.title, location: el.location, time:"180 min" }
 
                         return arrHosp;
                     }
@@ -27,23 +27,16 @@ mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
                         return true
                     }
                     return false
-                })
+                })              
 
-                var query = {time:"180"}
-                Hospital.update(query,{$set:{time:'180'}})
-                
                 return Hospital.insertMany(hospitals).then(console.log)
                 
-            })          
-    
-
+            })   
     })
     .catch(err => console.log(err))
     .then(hosp => mongoose.connection.close())
     .catch(err => {
-        console.error('Error connecting to mongo', err)
-
-        
+        console.error('Error connecting to mongo', err)        
 
     });
 

@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
-
     const ironhackMad = {
         lat: 40.392757,
         lng: -3.698256
@@ -65,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const marker = new google.maps.Marker({
                 position: center,
                 map: map,
-                title: hospital.name,
-                time: hospital.time = "180"
+                title: `${hospital.name} \n Time: ${hospital.time}`,
+                  
             })
             markers.push(marker)
         })
@@ -79,3 +77,4 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('IronGenerator JS imported successfully!');
 
 }, false);
+
