@@ -1,29 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log(window)
-
     const ironhackMad = {
         lat: 40.392757,
         lng: -3.698256
     }
 
     const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 12,
         center: ironhackMad
 
     })
 
-    console.startMap = () => {
+    startMap = () => {
 
-        map.addListener("click", function(e) {
-            document.getElementById("latitude").value = e.latLng.lat();
-            document.getElementById("longitude").value = e.latLng.lng();
-        });
+       
 
         const myMarker = new google.maps.Marker({
             position: ironhackMad,
             map: map,
-            title: 'IronHack'
+            title: 'Aqui estoy'
         })
         if (navigator.geolocation) {
 
@@ -52,14 +47,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    placeHospitals = (hospitals) => {
+
+        const markers = []
+
+        hospitals.forEach(hospital => {
+            if (!hospital.location) {
+                return
+            }
+            const center = {
+                lat: hospital.location.latitude,
+                lng: hospital.location.longitude
+            }
+
+            const marker = new google.maps.Marker({
+                position: center,
+                map: map,
+                title: `${hospital.name} \n Time: ${hospital.time}`,
+                  
+            })
+            markers.push(marker)
+        })
+    }
+
+    startMap()
+    placeHospitals(window.result)
 
 
-
-
-
-
-
-
-    log('IronGenerator JS imported successfully!');
+    console.log('IronGenerator JS imported successfully!');
 
 }, false);
+
