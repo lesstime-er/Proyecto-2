@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: String,
     password: String,
+    comments: String,
     role: {
         type: String,
         enum: ["User", "Consejeria", "Hospital"],

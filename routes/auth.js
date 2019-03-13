@@ -118,10 +118,7 @@ router.post("/delete", (req, res) => {
     console.log(req.user)
     User.findById(req.user._id, (err, user) => {
         console.log(req.user)
-            // if (password != user.password) {
-            //     res.render("auth/delete", { message: "The password is n ot correct" });
-            //     return;
-            // }
+           
         User.findByIdAndRemove(req.user._id)
             .then(() => {
                 res.redirect("/auth/acces")
@@ -228,6 +225,8 @@ router.get("/Hospital", checkHospital, (req, res) => {
             console.log(err)
         })
 })
+
+
 
 
 
