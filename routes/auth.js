@@ -134,6 +134,32 @@ router.post("/delete", (req, res) => {
 
 router.get("/show", (req, res) => res.render("auth/show"))
 router.get("/update", (req, res) => res.render("auth/update"))
+router.get("/Hospitalreviews", (req, res) => {
+    Hospital.find()
+        .then(hospitals => {
+            res.render("auth/Hospitalreviews", { result: JSON.stringify(hospitals) });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+
+})
+router.get("/Userreviews", (req, res) => {
+
+    Hospital.find()
+        .then(hospitals => {
+            res.render("auth/Userreviews", { result: JSON.stringify(hospitals) });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
+
+})
+
 
 
 // router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))
