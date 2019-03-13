@@ -10,6 +10,12 @@
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
   <br>
+  <label for="rol">Tipo de usuario</label>
+  <select name="role" id="">
+    <option value="User">User</option>
+    <option value="Consejeria">Consejeria</option>
+    <option value="Hospital">Hospital</option>
+  </select>
   {{#if message }}
     <div class="error-message">{{ message }}</div>
   {{/if}}

@@ -6,11 +6,11 @@ const userSchema = new Schema({
     password: String,
     role: {
         type: String,
-        enum : ["User","Consejeria", "Hospital"],
-        default : 'User'
-      },
-    
-},{
+        enum: ["User", "Consejeria", "Hospital"],
+        default: 'User'
+    },
+
+}, {
     timestamps: {
         createdAt: 'created_at',
         updatedAt: 'updated_at'

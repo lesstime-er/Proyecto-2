@@ -13,12 +13,24 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/auth/acces",
+    successRedirect: "/auth/redirectTo",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
 }));
 
+router.get("/redirectTo", (req, res) => {
+    if (req.user.role == "Hospital") {
+        res.redirect("/auth/Hospital")
+        return
+    } else if (req.user.role == "Consejeria") {
+        res.redirect("/auth/Consejeria")
+        return
+    } else {
+        res.redirect("/auth/acces")
+        return
+    }
+})
 
 
 router.get("/signup", (req, res, next) => {
@@ -26,8 +38,8 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password, role } = req.body;
+
     if (username === "" || password === "") {
         res.render("auth/signup", { message: "Indicate username and password" });
         return;
@@ -44,12 +56,13 @@ router.post("/signup", (req, res, next) => {
 
         const newUser = new User({
             username,
-            password: hashPass
+            password: hashPass,
+            role
         });
         console.log(newUser)
         newUser.save()
             .then(() => {
-                res.redirect("/auth/acces");
+                res.redirect("/auth/login")
             })
             .catch(err => {
                 console.log(err)
@@ -121,7 +134,9 @@ router.post("/delete", (req, res) => {
 
 router.get("/show", (req, res) => res.render("auth/show"))
 router.get("/update", (req, res) => res.render("auth/update"))
-    // router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))
+
+
+// router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))
 
 function ifYouAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -132,11 +147,15 @@ function ifYouAuthenticated(req, res, next) {
 
 }
 
-router.get("/acces", ifYouAuthenticated, (req, res) => {
+const checkUser = checkRoles('User');
+
+router.get("/acces", [ifYouAuthenticated, checkUser], (req, res) => {
 
         Hospital.find()
             .then(hospitals => {
+
                 res.render('auth/acces', { result: JSON.stringify(hospitals) });
+
             })
             .catch(err => {
                 console.log(err)
@@ -146,31 +165,43 @@ router.get("/acces", ifYouAuthenticated, (req, res) => {
 
 function checkRoles(role) {
     return function(req, res, next) {
+        console.log(req.user, "user role", role, "role")
+
         if (req.isAuthenticated() && req.user.role === role) {
             return next();
         } else {
-            res.redirect('/login')
+            res.redirect('/auth/login')
         }
     }
 }
-const checkUser = checkRoles('User');
 const checkConsejeria = checkRoles('Consejeria');
 const checkHospital = checkRoles('Hospital');
 
-router.get('login', checkUser, (req, res) => {
-    res.render('acces', { user: req.user });
-
-});
-router.get('login', checkConsejeria, (req, res) => {
-    res.render('Cosejeria', { user: req.user });
-
-});
-router.get('login', checkHospital, (req, res) => {
-    res.render('Hospital', { user: req.user });
-
-});
 
 
+
+
+router.get("/Consejeria", checkConsejeria, (req, res) => {
+    console.log("entras!!!!!!")
+    Hospital.find()
+        .then(hospitals => {
+            res.render("auth/Consejeria", { result: JSON.stringify(hospitals) });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+})
+router.get("/Hospital", checkHospital, (req, res) => {
+
+    Hospital.find()
+        .then(hospitals => {
+            res.render("auth/Hospital", { result: JSON.stringify(hospitals) });
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
 
 
 
