@@ -121,6 +121,7 @@ router.post("/delete", (req, res) => {
 
 router.get("/show", (req, res) => res.render("auth/show"))
 router.get("/update", (req, res) => res.render("auth/update"))
+
     // router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))
 
 function ifYouAuthenticated(req, res, next) {

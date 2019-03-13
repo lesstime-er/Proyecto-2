@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Aqui estoy',
             draggable: true,
             animation: google.maps.Animation.DROP,
+            icon:{ url:"http://maps.google.com/mapfiles/kml/pal3/icon23.png "}
 
           
         })
@@ -59,17 +60,36 @@ document.addEventListener('DOMContentLoaded', () => {
         hospitals.forEach(hospital => {
             if (!hospital.location) {
                 return
+            } 
+            
+            
+
+            let url;
+            //console.log(+hospital.time.split(" ")[0])
+            let timeMin = (Math.min(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
+            if(+hospital.time.split(" ")[0] === timeMin){
+                url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
             }
+            let timeMax = (Math.max(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
+            if(+hospital.time.split(" ")[0] === timeMax){
+                url = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+            }
+
+            
             const center = {
                 lat: hospital.location.latitude,
                 lng: hospital.location.longitude
             }
 
             const marker = new google.maps.Marker({
+                
                 position: center,
                 map: map,
-                title: `${hospital.name} \n Time: ${hospital.time}`,
-                
+                title: `${hospital.name} \n Time: ${hospital.time}`,  
+                icon:{
+                    url : url
+                }
+      
                   
             })
             markers.push(marker)
