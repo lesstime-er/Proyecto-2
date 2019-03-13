@@ -80,6 +80,20 @@ router.post("/update/:id", (req, res) => {
         })
         .catch(err => console.log(err))
 })
+router.get("/delete", ifYouAuthenticated, (req, res) => res.render("auth/delete"))
+    // Middleware de passport**************
+function ifYouAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect("/")
+    }
+
+}
+
+
+
+
 router.post("/delete", (req, res) => {
     console.log("he pasado por el post del delete")
     const username = req.body.username;
@@ -89,14 +103,17 @@ router.post("/delete", (req, res) => {
         return;
     }
     console.log(req.user)
-    User.findById(req.user._id, "username", (err, user) => {
+    User.findById(req.user._id, (err, user) => {
         console.log(req.user)
-        if (password != password) {
-            res.render("auth/delete", { message: "The password is n ot correct" });
-            return;
-        }
-        User.findByIdAndRemove(req.user._id, { password: req.body.password })
-            .then(() => res.redirect("/auth/acces"))
+            // if (password != user.password) {
+            //     res.render("auth/delete", { message: "The password is n ot correct" });
+            //     return;
+            // }
+        User.findByIdAndRemove(req.user._id)
+            .then(() => {
+                res.redirect("/auth/acces")
+            })
+
     })
 })
 
@@ -104,8 +121,19 @@ router.post("/delete", (req, res) => {
 
 router.get("/show", (req, res) => res.render("auth/show"))
 router.get("/update", (req, res) => res.render("auth/update"))
-router.get("/delete", (req, res) => res.render("auth/delete"))
-router.get("/acces", (req, res) => {
+    // router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))
+
+function ifYouAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect("/")
+    }
+
+}
+
+router.get("/acces", ifYouAuthenticated, (req, res) => {
+
     Hospital.find()
         .then(hospitals => {
             res.render('auth/acces', { result: JSON.stringify(hospitals) });
@@ -114,5 +142,6 @@ router.get("/acces", (req, res) => {
             console.log(err)
         })
 })
+
 
 module.exports = router;
