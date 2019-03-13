@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startMap = () => {
 
-       
+
 
         const myMarker = new google.maps.Marker({
             position: ironhackMad,
@@ -21,11 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Aqui estoy',
             draggable: true,
             animation: google.maps.Animation.DROP,
-            icon:{ url:"http://maps.google.com/mapfiles/kml/pal3/icon23.png "}
+            icon: {
+                url: "http://maps.google.com/mapfiles/kml/pal3/icon23.png "
+            }
 
-          
+
         })
-     
+
         if (navigator.geolocation) {
 
             navigator.geolocation.getCurrentPosition((position) => {
@@ -60,38 +62,57 @@ document.addEventListener('DOMContentLoaded', () => {
         hospitals.forEach(hospital => {
             if (!hospital.location) {
                 return
-            } 
-            
-            
+            }
+
+
 
             let url;
             //console.log(+hospital.time.split(" ")[0])
             let timeMin = (Math.min(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
-            if(+hospital.time.split(" ")[0] === timeMin){
+            if (+hospital.time.split(" ")[0] === timeMin) {
                 url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
             }
             let timeMax = (Math.max(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
-            if(+hospital.time.split(" ")[0] === timeMax){
-                url = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+            if (+hospital.time.split(" ")[0] === timeMax) {
+                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+
+            } else {
+                url = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
             }
 
-            
+
             const center = {
                 lat: hospital.location.latitude,
                 lng: hospital.location.longitude
             }
 
+            const infoReview = '<div class="reviewMarker">' + hospital.name +
+                '   <a href="/">REVIEW USUARIOS</a>   '   +   '   <a href="/">REVIEW HOSPITALES</a>   ' +
+
+                '</div>'
+
+            var infowindow = new google.maps.InfoWindow({
+                content: infoReview
+            });
+
             const marker = new google.maps.Marker({
-                
+
                 position: center,
                 map: map,
-                title: `${hospital.name} \n Time: ${hospital.time}`,  
-                icon:{
-                    url : url
+                title: `${hospital.name} \n Time: ${hospital.time}`,
+                icon: {
+                    url: url
                 }
-      
-                  
+
+
             })
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+
+
+
             markers.push(marker)
         })
     }
@@ -103,4 +124,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('IronGenerator JS imported successfully!');
 
 }, false);
-
