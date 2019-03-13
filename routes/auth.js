@@ -2,13 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
-<<<<<<< HEAD
 const Hospital = require("../models/Hospital");
-=======
-const Hospital= require("../models/Hospital");
-
-
->>>>>>> 48a3b366dac85bbbf85cdda8cc30c01fd5e97a57
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
@@ -99,7 +93,6 @@ router.get("/update", (req, res) => res.render("auth/update"))
 router.get("/delete", (req, res) => res.render("auth/delete"))
 router.get("/acces", (req, res) => {
     Hospital.find()
-<<<<<<< HEAD
         .then(hospitals => {
             res.render('auth/acces', { result: JSON.stringify(hospitals) });
         })
@@ -107,15 +100,38 @@ router.get("/acces", (req, res) => {
             console.log(err)
         })
 })
-=======
-  .then(hospitals => {
-    res.render('auth/acces', {result: JSON.stringify(hospitals)});
-  })
-  .catch(err => {
-    console.log(err)
-  })
-}
-)
->>>>>>> 48a3b366dac85bbbf85cdda8cc30c01fd5e97a57
+//Roles
+
+function checkRoles(role) {
+    return function(req, res, next) {
+      if (req.isAuthenticated() && req.user.role === role) {
+        return next();
+      } 
+      else {
+        res.redirect('/login')
+      }
+    }
+  }
+    const checkUser  = checkRoles('User');
+    const checkConsejeria = checkRoles('Consejeria');
+    const checkHospital  = checkRoles('Hospital');
+
+    router.get('login', checkUser, (req, res) => {
+        res.render('acces', {user: req.user});
+        
+      });
+      router.get('login', checkConsejeria, (req, res) => {
+        res.render('Cosejeria', {user: req.user});
+        
+      });
+      router.get('login', checkHospital, (req, res) => {
+        res.render('Hospital', {user: req.user});
+        
+      });
+      
+    
+
+
+  
 
 module.exports = router;
