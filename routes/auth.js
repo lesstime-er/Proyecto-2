@@ -134,14 +134,45 @@ function ifYouAuthenticated(req, res, next) {
 
 router.get("/acces", ifYouAuthenticated, (req, res) => {
 
-    Hospital.find()
-        .then(hospitals => {
-            res.render('auth/acces', { result: JSON.stringify(hospitals) });
-        })
-        .catch(err => {
-            console.log(err)
-        })
-})
+        Hospital.find()
+            .then(hospitals => {
+                res.render('auth/acces', { result: JSON.stringify(hospitals) });
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    })
+    //Roles
+
+function checkRoles(role) {
+    return function(req, res, next) {
+        if (req.isAuthenticated() && req.user.role === role) {
+            return next();
+        } else {
+            res.redirect('/login')
+        }
+    }
+}
+const checkUser = checkRoles('User');
+const checkConsejeria = checkRoles('Consejeria');
+const checkHospital = checkRoles('Hospital');
+
+router.get('login', checkUser, (req, res) => {
+    res.render('acces', { user: req.user });
+
+});
+router.get('login', checkConsejeria, (req, res) => {
+    res.render('Cosejeria', { user: req.user });
+
+});
+router.get('login', checkHospital, (req, res) => {
+    res.render('Hospital', { user: req.user });
+
+});
+
+
+
+
 
 
 module.exports = router;
