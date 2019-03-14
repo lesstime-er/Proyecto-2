@@ -12,6 +12,8 @@ router.get("/login", (req, res, next) => {
     res.render("auth/login", { "message": req.flash("error") });
 });
 
+
+
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/auth/redirectTo",
     failureRedirect: "/auth/login",
@@ -34,20 +36,21 @@ router.get("/redirectTo", (req, res) => {
 
 
 router.get("/signup", (req, res, next) => {
-    res.render("auth/signup");
+    res.render("auth/login");
 });
 
 router.post("/signup", (req, res, next) => {
+
     const { username, password, role } = req.body;
 
     if (username === "" || password === "") {
-        res.render("auth/signup", { message: "Indicate username and password" });
+        res.render("auth/login", { message: "Indicate username and password" });
         return;
     }
 
     User.findOne({ username }, "username", (err, user) => {
         if (user !== null) {
-            res.render("auth/signup", { message: "The username already exists" });
+            res.render("auth/login", { message: "The username already exists", vista: "signup" });
             return;
         }
 
@@ -66,7 +69,7 @@ router.post("/signup", (req, res, next) => {
             })
             .catch(err => {
                 console.log(err)
-                res.render("auth/signup", { message: "Something went wrong" });
+                res.render("auth/login", { message: "Something went wrong" });
             })
     });
 });
@@ -203,6 +206,7 @@ router.get("/acces", [ifYouAuthenticated, checkUser], (req, res) => {
 
         Hospital.find()
             .then(hospitals => {
+                console.log(hospitals)
 
                 res.render('auth/acces', { result: JSON.stringify(hospitals) });
 
