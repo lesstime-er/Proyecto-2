@@ -86,10 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 lng: hospital.location.longitude
             }
 
-            const infoReview = '<div class="reviewMarker">' + hospital.name +
-                '   <a href="/">REVIEW USUARIOS</a>   '   +   '   <a href="/">REVIEW HOSPITALES</a>   ' +
-
-                '</div>'
+            const infoReview =
+                `<div class="reviewMarker"> ${hospital.name}
+            <a href="/auth/Hospitalreviews/${hospital._id}">REVIEW HOSPITALES</a>
+            </div>`
 
             var infowindow = new google.maps.InfoWindow({
                 content: infoReview
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             })
 
-            marker.addListener('click', function () {
+            marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
 

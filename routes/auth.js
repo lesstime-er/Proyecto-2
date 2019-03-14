@@ -84,12 +84,14 @@ router.get("/update", (req, res) => {
 
 router.post("/update/:id", (req, res) => {
     const { username, password } = req.body
+    const saltt = bcrypt.genSaltSync(bcryptSalt);
+    const hashPasss = bcrypt.hashSync(password, saltt);
     console.log(req.body)
     console.log(username)
-    User.findByIdAndUpdate(req.params.id, { $set: { username, password } }, { new: true })
+    User.findByIdAndUpdate(req.params.id, { $set: { username, password: hashPasss } }, { new: true })
         .then(users => {
             console.log(req.body)
-            res.render("auth/update")
+            res.render("auth/acces")
         })
         .catch(err => console.log(err))
 })
@@ -118,7 +120,7 @@ router.post("/delete", (req, res) => {
     console.log(req.user)
     User.findById(req.user._id, (err, user) => {
         console.log(req.user)
-           
+
         User.findByIdAndRemove(req.user._id)
             .then(() => {
                 res.redirect("/auth/acces")
@@ -131,18 +133,44 @@ router.post("/delete", (req, res) => {
 
 router.get("/show", (req, res) => res.render("auth/show"))
 router.get("/update", (req, res) => res.render("auth/update"))
-router.get("/Hospitalreviews", (req, res) => {
-    Hospital.find()
-        .then(hospitals => {
-            res.render("auth/Hospitalreviews", { result: JSON.stringify(hospitals) });
+router.get("/Hospitalreviews/:id", (req, res) => {
+        const { id } = req.params;
+        Hospital.find()
+            .then(hospitals => {
+                const hospital = hospitals.find(hospital => hospital._id == id)
+                console.log(hospital.review)
+                res.render("auth/Hospitalreviews", { result: JSON.stringify(hospitals), hospital });
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+
+
+    })
+    // Post de reviews
+router.post("/Hospitalreviews/:id", (req, res) => {
+    const review = req.body.review
+    console.log(review.length)
+    if (review.length >= 140) {
+        Hospital.find()
+            .then(hospitals => {
+                const hospital = hospitals.find(hospital => hospital._id == req.params.id)
+                console.log(hospital.review)
+                res.render("auth/Hospitalreviews", { result: JSON.stringify(hospitals), hospital, msg: "MAX 140 CHAR" });
+            })
+        return
+    }
+    console.log(req.user.username)
+    Hospital.findByIdAndUpdate(req.params.id, { $push: { review: { review, author: req.user.username } } }, { new: true })
+        .then((hospital) => {
+            console.log(hospital.review)
+            res.redirect(`/auth/Hospitalreviews/${hospital._id}`)
         })
-        .catch(err => {
-            console.log(err)
-        })
-
-
-
+        .catch(console.log)
 })
+
+
 router.get("/Userreviews", (req, res) => {
 
     Hospital.find()
@@ -156,7 +184,6 @@ router.get("/Userreviews", (req, res) => {
 
 
 })
-
 
 
 // router.get("/acces", ifYouAuthenticated, (req, res) => res.render("auth/acces"))

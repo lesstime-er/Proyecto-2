@@ -1,5 +1,4 @@
 body {
-    padding: 50px;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -37,4 +36,26 @@ a {
 .reviewMarker {
     width: 140px;
     height: 40px;
+}
+
+nav {
+    background-color: rgb(56, 50, 50);
+    height: 50px;
+    margin-top: 0px;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.loginbar {
+    margin-left: 200p
+}
+
+.mapNoRev {
+    width: 100vw
 }

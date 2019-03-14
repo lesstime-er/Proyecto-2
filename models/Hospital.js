@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const hospitalSchema = new Schema({
     name: String,
     time: String,
-    location: { latitude: Number, longitude: Number }
-
+    location: { latitude: Number, longitude: Number },
+    review: []
 
 }, {
     timestamps: true

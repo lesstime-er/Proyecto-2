@@ -5,12 +5,35 @@
 <script>
   window.result = {{{result}}}
 </script>
-<h1>{{title}}</h1>
 
-<div id="map">
-   
+<h1>{{title}}</h1>
+<div class="containReviews">
+<div class="reviews">
+  <h2>{{hospital.name}}</h2>
+  
+{{#each user}}
+<h3> {{this.username}}</h3> 
+
+ {{/each}}
+     {{#each hospital.review}}
+     Author:<p>{{author}}</p>
+     Review:<p>{{review}}</p> 
+    
+      {{/each}}
+ {{#if msg}}
+  <p>{{msg}}</p>
+ {{/if}}
+  <form action="/auth/Hospitalreviews/{{hospital._id}}" method="POST">
+     <label for="review">Coments</label><br>
+  <textarea name="review" id="" cols="30" rows="5"></textarea>
+  <input type="submit">
+  </form>
+
 </div>
-<div class="reviews"></div>
+<div id="map">
+</div>
+</div>
+
 
 <div class="header">
 
