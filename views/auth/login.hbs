@@ -1,34 +1,90 @@
 
-<h2>Login</h2>
+<h2></h2>
 
-<form action="/auth/login" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
 
-  <br><br>
 
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
-  <label for="rol">Tipo de usuario</label>
-  <select name="role" id="">
+<div class="login-wrap">
+	<div class="login-html">
+    <form action="/auth/login" method="POST" id="form-container">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<div class="group">
+					<label for="username" class="label">Username</label>
+					<input id="username" name="username" type="text" class="input">
+
+
+
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="password" name="password" type="password" class="input" data-type="password">
+
+				</div>
+
+
+
+        
+
+  <p class="account-message">
+    Don't have an account yet?
+    <a href="/auth/login">Signup</a>
+  </p>
+
+				
+				<div class="group">
+					<input type="submit" class="button" value="Log In">
+				</div>
+				</form>
+					  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+			</div>
+
+
+
+			
+      <form action="/auth/signup" method="POST">
+			<div class="sign-up-htm">
+				<div class="group">
+					<label for="user" class="label">Username</label>
+					<input id="username" type="text" class="input" name="username">
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" name="password" type="password" class="input" data-type="password">
+				</div>
+				<div class="group">
+					
+
+<label for="rol">Tipo de usuario</label>
+  <select name="role" id="" class="input">
     <option value="User">User</option>
     <option value="Consejeria">Consejeria</option>
     <option value="Hospital">Hospital</option>
   </select>
-  <br><br>
 
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
- <a href="/auth/update/{{_id}}">Update</a> 
- <a href="/auth/show/{{_id}}">Show</a> 
-  <button>Login</button>
 
   <p class="account-message">
+
+
+
+
+				</div>
+
+        
+  <p class="account-message">
     Don't have an account yet?
-    <a href="/auth/signup">Signup</a>
+    <a href="/auth/login">Signup</a>
   </p>
-</form>
+			
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up">
+          </form>
+				</div>
+							
+			</div>
+		</div>
+	</div>
+</div>

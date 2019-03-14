@@ -1,10 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose")
 const Hospital = require("../models/Hospital");
 const axios = require("axios")
 
 
 
-mongoose.connect('mongodb://localhost/lesstime-er', { useNewUrlParser: true })
+mongoose.connect(process.env.DB, { useNewUrlParser: true })
     .then(x => {
 
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
