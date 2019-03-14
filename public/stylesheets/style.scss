@@ -31,24 +31,23 @@ header {
     //box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
     border-radius: 17px 0px 0px 17px;
     border: 2px inset rgba(28, 110, 164, 0.16);
-    background-color: rgba(6, 22, 37, 0.74);
+    background-color: rgba(178, 188, 197, 0.74);
     margin: 0
 }
 
 .reviewsHead {
-    padding: 30px;
-    background-color: rgba(111, 157, 211, 0.418);
+    padding: 40px;
+    background-color: rgba(5, 23, 46, 0.671);
 }
 
 .reviewsHead p {
-    color: rgb(26, 22, 22);
-    font-size: 2em;
+    color: beige;
+    font-size: 1.2em;
     font-family: 'PT Sans', sans-serif;
 }
 
 .containReviews {
     display: flex;
-    flex-flow: row wrap;
 }
 
 .reviewMarker {
@@ -111,7 +110,7 @@ nav a {
 .ediBt {
     color: beige;
     margin-top: 60vh;
-    margin-left: 2vw;
+    margin-left: 1vw;
     background-color: #7a8bc9;
     padding: 10px;
     border-radius: 20px
@@ -120,7 +119,7 @@ nav a {
 .ediBt {
     display: inline-block;
     border-radius: 4px;
-    background-color: #6bb2f9;
+    background-color: #2e4761;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -131,12 +130,16 @@ nav a {
     cursor: pointer;
 }
 
+#deleteBt {
+    background-color: #ac473f;
+}
+
 .ediBt span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
-    color: black;
+    color: wheat;
 }
 
 .ediBt span:after {
@@ -352,4 +355,8 @@ a {
     font-size: 1.5rem;
     color: white;
     margin-top: 3rem;
+}
+
+#logoHop {
+    width: 100px
 }
