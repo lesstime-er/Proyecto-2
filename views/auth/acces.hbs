@@ -2,17 +2,25 @@
   window.result = {{{result}}}
 </script>
 <h1>{{title}}</h1>
+<div class="containReviews">
 
+<div class="reviews">
+  <div class="reviewsHead">
+  <p>You can write a review by clicking on the pointer off the Hospital and falow the link </p>
+  </div>
+  <a href="/auth/update/{{_id}}"><button class="ediBt"><span>UPDATE your profile</span></button></a>
+<a href="/auth/delete"><button class="ediBt"><span>Delete your profile</span></button></a>
+  </div>
 <div id="map"></div>
 
-<div class="header">
+</div>
+<!--<div class="header">
 
-<p>Welcome to {{title}}</p>
-<p id="hospitales"></p>
-<button id="check">Check</button>
 
-<a href="/auth/update/{{_id}}">UPDATE</a>
-<a href="/auth/delete"><button id="check">DELETE</button></a>
+<p id="hospitales"></p>-->
+
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo"></script>
 <script src="/javascripts/script.js"></script>

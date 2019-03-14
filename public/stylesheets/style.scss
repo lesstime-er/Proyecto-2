@@ -12,20 +12,38 @@ a {
     height: 1000px;
 }
 
+header {
+    background-image: url(images/Header.jpg)
+}
+
 #map {
-    width: 70vw;
-    height: 85vh;
-    box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
+    width: 80vw;
+    height: 100vh;
+    //box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
     border-radius: 0px 17px 17px 0px;
     border: 2px inset rgba(28, 110, 164, 0.16);
+    margin: 0
 }
 
 .reviews {
     width: 20vw;
-    height: 85vh;
-    box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
+    height: 100vh;
+    //box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
     border-radius: 17px 0px 0px 17px;
     border: 2px inset rgba(28, 110, 164, 0.16);
+    background-color: rgba(6, 22, 37, 0.74);
+    margin: 0
+}
+
+.reviewsHead {
+    padding: 30px;
+    background-color: rgba(111, 157, 211, 0.418);
+}
+
+.reviewsHead p {
+    color: rgb(26, 22, 22);
+    font-size: 2em;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .containReviews {
@@ -39,10 +57,8 @@ a {
 }
 
 nav {
-    background-color: rgb(56, 50, 50);
-    height: 50px;
-    margin-top: 0px;
-    padding: 10px;
+    z-index: 999;
+    box-shadow: 8px 13px 15px 4px rgba(0, 0, 0, 0.29);
 }
 
 nav a {
@@ -59,3 +75,82 @@ nav a {
 .mapNoRev {
     width: 100vw
 }
+
+.headerImg {
+    width: 100vw;
+}
+
+// --------------------
+// SLIDER
+.carousel-inner {
+    max-height: 100vh;
+}
+
+.carousel-item {
+    position: relative;
+    h1 {
+        color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 99;
+}
+
+.ediBt {
+    color: beige;
+    margin-top: 60vh;
+    margin-left: 2vw;
+    background-color: #7a8bc9;
+    padding: 10px;
+    border-radius: 20px
+}
+
+.ediBt {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #6bb2f9;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 1em;
+    padding: 10px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.ediBt span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    color: black;
+}
+
+.ediBt span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.ediBt:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+// ---------------------
