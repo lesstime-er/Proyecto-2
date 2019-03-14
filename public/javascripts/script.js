@@ -64,20 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 return
             }
 
-
-
             let url;
-            //console.log(+hospital.time.split(" ")[0])
-            let timeMin = (Math.min(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
-            if (+hospital.time.split(" ")[0] === timeMin) {
-                url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
-            }
-            let timeMax = (Math.max(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
-            if (+hospital.time.split(" ")[0] === timeMax) {
-                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
 
-            } else {
+            
+            let timeMin = (Math.min(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
+            let timeMax = (Math.max(...(hospitals.map(hospital => +hospital.time.split(" ")[0]))))
+
+
+
+            if (+hospital.time.split(" ")[0] === timeMax) {
+                url = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+            }else if(+hospital.time.split(" ")[0] === timeMin) {
                 url = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+            
+
+            
+                
+            } else {
+                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
             }
 
 
