@@ -31,7 +31,7 @@
         //box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
         border-radius: 17px 0px 0px 17px;
         border: 2px inset rgba(28, 110, 164, 0.16);
-        background-color: rgba(242, 245, 247, 0.74);
+        background-color: rgba(178, 188, 197, 0.74);
         margin: 0
     }
     
@@ -40,29 +40,14 @@
         background-color: rgba(5, 23, 46, 0.671);
     }
     
-    .reviewsHead p,
-    h2 {
-        color: rgb(240, 240, 234);
-        font-size: 1.3em;
-        font-family: 'Opens Sans', sans-serif;
-    }
-    
-    .auth-rev {
-        color: rgba(17, 16, 16, 0.842);
-        margin-top: 10px
-    }
-    
-    .authorReview h3 {
-        margin-top: 5vh
+    .reviewsHead p {
+        color: beige;
+        font-size: 1.2em;
+        font-family: 'PT Sans', sans-serif;
     }
     
     .containReviews {
         display: flex;
-        text-align: center
-    }
-    
-    .containReviews strong {
-        font-size: 1.5em
     }
     
     .reviewMarker {
@@ -72,8 +57,7 @@
     
     nav {
         z-index: 999;
-        //box-shadow: 8px 13px 15px 4px rgba(0, 0, 0, 0.29);
-        box-shadow: 29px 32px 20px -2px rgba(0, 0, 0, 0.4);
+        box-shadow: 8px 13px 15px 4px rgba(0, 0, 0, 0.29);
     }
     
     nav a {
@@ -83,11 +67,30 @@
         padding: 5px;
     }
     
-    nav a:hover {
-        color: white;
-        font-size: 1.7em;
-        text-decoration: none;
-        text-shadow: 13px 15px 8px rgba(4, 17, 26, 0.66);
+    .loginbar {
+        margin-left: 200p
+    }
+    
+    .mapNoRev {
+        width: 100vw
+    }
+    
+    .headerImg {
+        width: 100vw;
+    }
+    
+    .carousel-inner {
+        max-height: 100vh;
+    }
+    
+    .carousel-item {
+        position: relative;
+        h1 {
+            color: white;
+            font-size: 1.7em;
+            text-decoration: none;
+            text-shadow: 13px 15px 8px rgba(4, 17, 26, 0.66);
+        }
     }
     
     .loginbar {

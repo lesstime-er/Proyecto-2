@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             draggable: true,
             animation: google.maps.Animation.DROP,
             icon: {
-                url: "http://maps.google.com/mapfiles/kml/pal3/icon23.png "
+                url: "../images/icons8-address-48.png"
             }
 
 
@@ -306,15 +306,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             if (+hospital.time.split(" ")[0] === timeMax) {
-                url = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+                url = "../images/hospital-mas.png";
             }else if(+hospital.time.split(" ")[0] === timeMin) {
-                url = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+                url = "../images/hospital-signmenos-48.png";
             
 
             
                 
             } else {
-                url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+                url = "../images/icons8-hospital-3-48.png"
             }
 
 
@@ -324,8 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const infoReview =
-                `<div class="reviewMarker"> ${hospital.name}
-            <a href="/auth/Hospitalreviews/${hospital._id}">REVIEW HOSPITALES</a>
+                `<div class="reviewMarker"> ${hospital.name}  
+              <br>
+            <a href="/auth/Hospitalreviews/${hospital._id}">-REVIEWS-</a>
             </div>`
 
             var infowindow = new google.maps.InfoWindow({
