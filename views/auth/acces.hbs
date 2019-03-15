@@ -2,16 +2,21 @@
   window.result = {{{result}}}
 </script>
 <h1>{{title}}</h1>
+<span class="background"></span>
 <div class="containReviews">
 
 <div class="reviews">
   <div class="reviewsHead">
-  <p>Para ver los comentarios haz click el los markers </p>
+  <p>To see the reviews click on the markers </p>
 
   </div>
+  
   <img src="/images/saludmadrid.png" id="logoHop">
-  <a href="/auth/update/{{_id}}"><button class="ediBt"><span>UPDATE your profile</span></button></a>
-<a href="/auth/delete"><button id="deleteBt" class="ediBt"><span>Delete your profile</span></button></a>
+  <div class="coments-elements">
+    <a href="/auth/delete"><button  class="ediBt deleteBt"><span>Delete your profile</span></button></a>
+  <a href="/auth/update"><button class="ediBt"><span>UPDATE your profile</span></button></a>
+
+  </div>
   </div>
 <div id="map"></div>
 
@@ -22,7 +27,7 @@
 <p id="hospitales"></p>-->
 
 
-
+</span>
 
 <script>
   console.log({{{result}}})

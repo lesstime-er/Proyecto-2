@@ -73,6 +73,17 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
+app.use((req, res, next) => {
+
+    if (req.user) {
+        res.locals.currentUserInfo = req.user;
+        res.locals.isUserLoggedIn = true;
+    } else {
+        res.locals.isUserLoggedIn = false;
+    }
+
+    next();
+});
 
 
 const index = require('./routes/index');

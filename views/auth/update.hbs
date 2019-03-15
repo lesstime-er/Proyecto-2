@@ -1,19 +1,32 @@
 
 
 
-<form class= "formulario" action="/auth/update/{{user._id}}" method="post">
 
 
 
-  <label for="name">Name:</label>
+
+
+<div class="login-page">
+  <div class="form">
+   
+  
+
+
+    <form class="register-form formulario" >
+      
+      
+    {{#if message}}
+       <div class="error-message">{{ message }}</div>
+   {{/if}}
+    </form>
+    <form class="login-form" action="/auth/update/{{user._id}}" method="post">
+     <label for="name">Name:</label>
   <input type="text" name="username" id="name" value="{{users.username}}">
-
-
-<label for="text">Password:</label>
+       <label for="text">Password:</label>
   <input type="text" name="password" value="{{users.password}}">
+ <button type="submit">Edit </button> 
 
-
-
-
-  <button type="submit">Edit </button> 
-</form>
+      
+    </form>
+    </div>
+    </div>

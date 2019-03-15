@@ -31,7 +31,7 @@ header {
     //box-shadow: 13px 20px 27px 4px rgba(0, 0, 0, 0.57);
     border-radius: 17px 0px 0px 17px;
     border: 2px inset rgba(28, 110, 164, 0.16);
-    background-color: rgba(178, 188, 197, 0.74);
+    background-color: rgba(242, 245, 247, 0.74);
     margin: 0
 }
 
@@ -40,15 +40,28 @@ header {
     background-color: rgba(5, 23, 46, 0.671);
 }
 
-.reviewsHead p {
-    color: beige;
-    font-size: 1.2em;
-    font-family: 'PT Sans', sans-serif;
+.reviewsHead p,
+h2 {
+    color: rgb(240, 240, 234);
+    font-size: 1.3em;
+    font-family: 'Opens Sans', sans-serif;
+}
+
+.auth-rev {
+    color: rgba(17, 16, 16, 0.842);
+}
+
+.authorReview h3 {
+    margin-top: 5vh
 }
 
 .containReviews {
     display: flex;
-    <<<<<<< HEAD=======>>>>>>>2a8e091d574c11dcb2fc715a99f4226100f578d7
+    text-align: center
+}
+
+.containReviews strong {
+    font-size: 1.5em
 }
 
 .reviewMarker {
@@ -58,7 +71,8 @@ header {
 
 nav {
     z-index: 999;
-    box-shadow: 8px 13px 15px 4px rgba(0, 0, 0, 0.29);
+    //box-shadow: 8px 13px 15px 4px rgba(0, 0, 0, 0.29);
+    box-shadow: 29px 32px 20px -2px rgba(0, 0, 0, 0.4);
 }
 
 nav a {
@@ -66,6 +80,13 @@ nav a {
     font-size: 1.5em;
     text-decoration: none;
     padding: 5px;
+}
+
+nav a:hover {
+    color: white;
+    font-size: 1.7em;
+    text-decoration: none;
+    text-shadow: 13px 15px 8px rgba(4, 17, 26, 0.66);
 }
 
 .loginbar {
@@ -78,6 +99,7 @@ nav a {
 
 .headerImg {
     width: 100vw;
+    height: 130vh;
 }
 
 // --------------------
@@ -108,31 +130,31 @@ nav a {
     z-index: 99;
 }
 
-.ediBt {
-    color: beige;
-    margin-top: 60vh;
-    margin-left: 1vw;
-    background-color: #7a8bc9;
-    padding: 10px;
-    border-radius: 20px
+.ediBt:hover {
+    padding: 15px;
+    transform: rotateZ(15deg);
+    cursor: pointer;
 }
 
 .ediBt {
     display: inline-block;
     border-radius: 4px;
-    background-color: #2e4761;
+    background-color: #1471d4;
     border: none;
-    color: #FFFFFF;
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 1em;
+    font-size: 1.08em;
+    font-weight: bold;
+    margin-top: 30vh;
+    margin-left: 1vw;
     padding: 10px;
     width: 120px;
     transition: all 0.5s;
     cursor: pointer;
 }
 
-#deleteBt {
-    background-color: #ac473f;
+.deleteBt {
+    background-color: #eb1009e8;
 }
 
 .ediBt span {
@@ -140,7 +162,7 @@ nav a {
     display: inline-block;
     position: relative;
     transition: 0.5s;
-    color: wheat;
+    color: rgb(252, 251, 250);
 }
 
 .ediBt span:after {
@@ -155,6 +177,15 @@ nav a {
 .ediBt:hover span:after {
     opacity: 1;
     right: 0;
+    transform: rotateY(180deg);
+}
+
+#comentBt {
+    margin-top: 10vh
+}
+
+#consejeria {
+    font-size: 2.5em
 }
 
 // ---------------------
@@ -359,7 +390,14 @@ a {
 }
 
 #logoHop {
-    width: 100px
+    width: 200px;
+    margin: 40px;
+    margin-top: 120px;
+    opacity: 0.8;
+}
+
+#logoHop:hover {
+    opacity: 1.0;
 }
 
 .formulario {
@@ -515,8 +553,56 @@ a {
 }
 
 body {
-    background-color: #1cbbec50;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: hsla(170, 53%, 69%, 0.664);
+}
+
+.coments-elements {
+    flex-direction: column;
+}
+
+.text-hompage,
+.start {
+    color: hsl(0, 12%, 97%);
+    position: absolute;
+    top: 3%;
+    left: 8%;
+    margin: 100px auto;
+    display: block;
+    font-size: 3em;
+    width: 28%;
+}
+
+.start {
+    margin-top: 45vh;
+    font-size: 2em;
+    border-radius: 30px;
+    width: 20%;
+    height: 7%;
+    left: 12%;
+    background-color: #4442d3
+}
+
+.start:hover {
+    font-size: 3.5em;
+    transform: none;
+    width: 26%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    transition: 0.5s
+}
+
+.start span {
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    color: rgb(252, 251, 250);
+}
+
+.start:hover span:after {
+    opacity: 1;
+    right: 0;
 }

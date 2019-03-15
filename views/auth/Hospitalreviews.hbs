@@ -9,25 +9,31 @@
 <h1>{{title}}</h1>
 <div class="containReviews">
 <div class="reviews">
+  <div class="reviewsHead">
   <h2>{{hospital.name}}</h2>
-  
+  </div>
+  <div id="authorReview">
 {{#each user}}
 <h3> {{this.username}}</h3> 
 
  {{/each}}
      {{#each hospital.review}}
-     Author:<p>{{author}}</p>
-     Review:<p>{{review}}</p> 
+     <strong class="auth-rev">Author:<span>{{author}}</span></strong><br>
+ <strong class="auth-rev"> Review:<p>{{review}}</p> </strong> 
     
       {{/each}}
+      
  {{#if msg}}
   <p>{{msg}}</p>
  {{/if}}
+ </div>
   <form action="/auth/Hospitalreviews/{{hospital._id}}" method="POST">
      <label for="review">Coments</label><br>
   <textarea name="review" id="" cols="30" rows="5"></textarea>
-  <input type="submit">
+  <input class="ediBt" id="comentBt" type="submit">
+  
   </form>
+  
 
 </div>
 <div id="map">
@@ -35,15 +41,14 @@
 </div>
 
 
-<div class="header">
 
-<p>Welcome to {{title}}</p>
-<p id="hospitales"></p>
-<button id="check">Check</button>
 
-<a href="/updateHosp"><button id="refresh-time">Time Refresh</button></a>
-<a href="/auth/update/{{_id}}">UPDATE</a>
-<a href="/auth/delete"><button id="check">DELETE</button></a>
+
+
+
+
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUeQXCyJDlhOtCB8JwWAk8zCxpjk6k-jo"></script>
 <script src="/javascripts/script.js"></script>
