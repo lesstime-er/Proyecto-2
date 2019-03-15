@@ -18,9 +18,10 @@
 
  {{/each}}
      {{#each hospital.review}}
+     <span id="coments-block">
      <strong class="auth-rev">Author:<span>{{author}}</span></strong><br>
  <strong class="auth-rev"> Review:<p>{{review}}</p> </strong> 
-    
+    </span>
       {{/each}}
       
  {{#if msg}}
